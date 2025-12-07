@@ -137,8 +137,41 @@
 <!-- TOMBOL MUSIC -->
 <button id="musicBtn" class="music-btn">▶ Musik</button>
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  fetch("download.json")
+    .then(res => res.json())
+    .then(data => {
+      const realLink = atob(data.d);
+
+      const navBtn = document.getElementById("downloadNav");
+      const heroBtn = document.getElementById("downloadHero");
+
+      if (navBtn) {
+        navBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+          window.location.href = realLink;
+        });
+      }
+
+      if (heroBtn) {
+        heroBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+          window.location.href = realLink;
+        });
+      }
+    })
+    .catch(err => {
+      console.error("Gagal load download.json:", err);
+      alert("Link download gagal dimuat!");
+    });
+});
+</script>
+</body>
+
 </body>
 </html>
+
 
 
 
